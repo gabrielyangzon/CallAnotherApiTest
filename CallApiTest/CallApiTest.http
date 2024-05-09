@@ -1,0 +1,8 @@
+@CallApiTest_HostAddress = http://localhost:5208/api
+
+GET {{CallApiTest_HostAddress}}/Test/
+Accept: application/json
+
+###
+
+POST {{CallApiTest_HostAddress}}/Test?data="234"
