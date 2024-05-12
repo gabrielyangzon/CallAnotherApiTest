@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CallApiTest.Controllers
-{   
-    //[Authorize]
+{
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TestController : ControllerBase
@@ -19,9 +20,10 @@ namespace CallApiTest.Controllers
         
         // GET api/proxy
         [HttpGet]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        
         public async Task<IActionResult> Get()
         {
+            X509Certificate2? clientCertificate = HttpContext.Connection.ClientCertificate;
             // Replace 'external-api-url' with the actual URL of the web API you want to call
             string externalApiUrl = "https://jsonplaceholder.typicode.com/todos";
             
